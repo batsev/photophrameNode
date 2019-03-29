@@ -27,14 +27,30 @@ var fs = require("fs");
 
 //   });
 
+var express = require('express');
+var app = express();
+var path = require('path');
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+
 fs.readFile("my.json", function(err, buf) {
     var myData = JSON.parse(buf);
     var images = myData.entry_data.ProfilePage[0].graphql.user.edge_owner_to_timeline_media.edges;
+    var picsFromIG = [];
     images.forEach((edge)=>{
-        var node = edge.node.thumbnail_src;
-        console.log(node);
+        picsFromIG.push(edge.node.thumbnail_src);
+    })
+    app.get('/', function(req,res){
+        res.render('app',{
+            picsFromIG: picsFromIG
+        });
     })
 
 
   });
+  app.listen(3000, function(){
+      console.log('Port 3000...');
+  })
 
