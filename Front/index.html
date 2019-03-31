@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        background: #333;
+      }
+      form {
+        display: flex;
+      }
+      #gallery {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-gap: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <form id="igForm">
+        <div class="input-group mt-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3"
+              >Any open instagram profile =></span
+            >
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            id="basic-url"
+            aria-describedby="basic-addon3"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary mt-3 ml-3">Request</button>
+      </form>
+      <div id="gallery" class="mt-3"></div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
