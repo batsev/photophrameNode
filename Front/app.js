@@ -1,6 +1,9 @@
+const gallery = document.querySelector("#gallery");
+
 document.querySelector("#igForm").addEventListener("submit", e => {
   e.preventDefault();
   const IGNickname = document.querySelector("#basic-url").value;
+  document.querySelector("#basic-url").value = "";
   console.log(IGNickname);
   var xhr = new XMLHttpRequest();
   xhr.open("GET", `http://localhost:8000/get?profile=${IGNickname}`, true);
@@ -10,9 +13,13 @@ document.querySelector("#igForm").addEventListener("submit", e => {
       console.log(images);
       var output = "";
       for (var i in images) {
-        output += `<img src="${images[i]}" class="card-img-top">`;
+        output += `<div class="myCard"><img src="${
+          images[i]
+        }" class="card-img-top myImage"></div>`;
       }
-      document.querySelector("#gallery").innerHTML = output;
+      gallery.classList.add("fadein");
+      gallery.innerHTML = output;
+      setTimeout(() => gallery.classList.remove("fadein"), 5000);
     }
   };
   xhr.send();

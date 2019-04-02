@@ -13,7 +13,21 @@
     />
     <style>
       body {
-        background: #333;
+        background: #d9d9d9;
+        padding-bottom: 20px;
+      }
+      * {
+        font-size: 20px;
+        font-family: "system";
+        user-select: none;
+      }
+      @font-face {
+        font-family: system;
+        font-style: normal;
+        src: local(".SFNSText-Light"),
+          local(".HelveticaNeueDeskInterface-Light"), local(".LucidaGrandeUI"),
+          local("Ubuntu Light"), local("Segoe UI Light"), local("Roboto-Light"),
+          local("DroidSans"), local("Tahoma");
       }
       form {
         display: flex;
@@ -21,7 +35,45 @@
       #gallery {
         display: grid;
         grid-template-columns: auto auto auto;
-        grid-gap: 5px;
+        grid-gap: 25px;
+      }
+
+      .myImage {
+        border-radius: 20px;
+      }
+
+      .myCard {
+        border-radius: 20px;
+        transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0s;
+      }
+      .myCard:hover {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 30px 60px;
+        transform: scale(1.1, 1.1);
+      }
+
+      .fadein {
+        animation: fadeIn 0.5s ease-in 1;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .btn {
+        border-radius: 10px;
+        border: none;
+        padding: 8px 15px;
+        transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1.2) 0s;
+      }
+      .btn:hover {
+        color: black;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 10px 20px;
+        transform: translateY(-3px);
+        background: white;
       }
     </style>
   </head>
@@ -31,8 +83,8 @@
         <div class="input-group mt-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon3"
-              >Any open instagram profile =></span
-            >
+              >Any open instagram profile:
+            </span>
           </div>
           <input
             type="text"
@@ -41,7 +93,9 @@
             aria-describedby="basic-addon3"
           />
         </div>
-        <button type="submit" class="btn btn-primary mt-3 ml-3">Request</button>
+        <button type="submit" class="btn btn-dark mt-3 ml-3">
+          Request
+        </button>
       </form>
       <div id="gallery" class="mt-3"></div>
     </div>
