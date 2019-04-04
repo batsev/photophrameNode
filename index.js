@@ -21,14 +21,30 @@ app.get("/get", function(req, res) {
       var re = /{"config"(.*)ry":false}/g;
       var found = body.toString().match(re);
       var myData = JSON.parse(found);
+      if (myData == undefined) {
+        console.log(`Error: ${error}`);
+        res.status(500).send(error);
+        return;
+      }
+      if (myData.entry_data.ProfilePage == undefined) {
+        console.log(`Error: ${error}`);
+        res.status(401).send(error);
+        return;
+      }
       var images =
         myData.entry_data.ProfilePage[0].graphql.user
           .edge_owner_to_timeline_media.edges;
-      var picsFromIG = [];
-      images.forEach(edge => {
-        picsFromIG.push(edge.node.thumbnail_src);
-      });
-      res.json(picsFromIG);
+      if (images.length > 0) {
+        var picsFromIG = [];
+        images.forEach(edge => {
+          picsFromIG.push(edge.node.thumbnail_src);
+        });
+        res.json(picsFromIG);
+      } else {
+        console.log(`Error: Account is private`);
+        res.status(401).send(error);
+        return;
+      }
     }
   );
 });
