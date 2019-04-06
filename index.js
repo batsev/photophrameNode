@@ -14,6 +14,11 @@ app.use(function(req, res, next) {
 
 app.get("/get", function(req, res) {
   console.log(req.query.profile);
+  // if(req.query.profile.indexOf('%')!=-1){
+  //   console.log(`Error: wrong letters`);
+  //   res.status(500).send(error);
+  //   return;
+  // }
   request(
     {
       uri: `https://www.instagram.com/${req.query.profile}/`
@@ -35,7 +40,7 @@ app.get("/get", function(req, res) {
       var images =
         myData.entry_data.ProfilePage[0].graphql.user
           .edge_owner_to_timeline_media.edges;
-      if (images.length > 0) {
+      if (images.length > 0 && !error) {
         var picsFromIG = [];
         images.forEach(edge => {
           picsFromIG.push(edge.node.thumbnail_src);
