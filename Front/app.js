@@ -2,7 +2,7 @@ const gallery = document.querySelector("#gallery");
 
 function showAlert(message, className) {
   const div = document.createElement("div");
-  div.className = `alert alert-${className} mt-3`;
+  div.className = `alert alert-${className} mt-3 fadein`;
   div.appendChild(document.createTextNode(message));
   const container = document.querySelector(".container");
   const form = document.querySelector("#igForm");
