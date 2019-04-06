@@ -13,7 +13,7 @@ function showAlert(message, className) {
 function showImages(IGNickname) {
   document.querySelector("#basic-url").value = "";
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", `http://localhost:8000/get?profile=${IGNickname}`, true);
+  xhr.open("GET", `https://still-tor-76784.herokuapp.com/get?profile=${IGNickname}`, true);
   xhr.onload = function() {
     if (this.status == 200) {
       var images = JSON.parse(this.responseText);

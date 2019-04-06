@@ -56,6 +56,8 @@ app.get("/", function(req,res){
   res.render(index);
 })
 
+const PORT = process.env.PORT || 8000;
+
 app.listen(8000, function() {
   console.log("Port 8000...");
 });
