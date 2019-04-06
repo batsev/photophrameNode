@@ -1,6 +1,7 @@
 var request = require("request");
 var express = require("express");
 var app = express();
+var path = require("path");
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -48,6 +49,12 @@ app.get("/get", function(req, res) {
     }
   );
 });
+
+app.use(express.static(path.join(__dirname, 'Front')));
+
+app.get("/", function(req,res){
+  res.render(index);
+})
 
 app.listen(8000, function() {
   console.log("Port 8000...");
