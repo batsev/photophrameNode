@@ -28,6 +28,8 @@ function showImages(IGNickname) {
       setTimeout(() => gallery.classList.remove("fadein"), 5000);
     } else if (this.status == 401) {
       showAlert("Account is private!", "danger");
+    }  else if (this.status == 402) {
+        showAlert("Invalid nickname!", "danger");
     } else {
       showAlert("No such account!", "danger");
     }

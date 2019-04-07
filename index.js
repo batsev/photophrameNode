@@ -14,11 +14,11 @@ app.use(function(req, res, next) {
 
 app.get("/get", function(req, res) {
   console.log(req.query.profile);
-  // if(req.query.profile.indexOf('%')!=-1){
-  //   console.log(`Error: wrong letters`);
-  //   res.status(500).send(error);
-  //   return;
-  // }
+  if(req.query.profile.match(/^([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)$/) == null){
+    console.log(`Error: Invalid nickname`);
+    res.status(402).send(error);
+    return;
+  }
   request(
     {
       uri: `https://www.instagram.com/${req.query.profile}/`
@@ -40,7 +40,7 @@ app.get("/get", function(req, res) {
       var images =
         myData.entry_data.ProfilePage[0].graphql.user
           .edge_owner_to_timeline_media.edges;
-      if (images.length > 0 && !error) {
+      if (images.length > 0) {
         var picsFromIG = [];
         images.forEach(edge => {
           picsFromIG.push(edge.node.thumbnail_src);
